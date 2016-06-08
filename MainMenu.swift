@@ -24,16 +24,20 @@ class MainMenu: Scene{
         // PlayButton
         let startGameBtn = SKLabelNode(fontNamed: "Avenir-BlackOblique")
         startGameBtn.text = "Tap to play"
-        startGameBtn.fontColor = SKColor.purpleColor()
+        startGameBtn.fontColor = UIColor.cyanColor()
         startGameBtn.fontSize = 42
         startGameBtn.position = CGPointMake(frame.size.width/2, frame.size.height * 0.3)
         startGameBtn.name = "playButton"
+        let fadeIn = SKAction.fadeInWithDuration(1.0)
+        let fadeOut = SKAction.fadeOutWithDuration(1.0)
+        let pulseForever = SKAction.repeatActionForever(SKAction.sequence([fadeIn, fadeOut]))
+        startGameBtn.runAction(pulseForever)
         addChild(startGameBtn)
         
         // Title
         let title = SKLabelNode(fontNamed: "Avenir-BlackOblique")
         title.text = "SwiftOrb"
-        title.fontColor = SKColor.blackColor()
+        title.fontColor = UIColor.cyanColor()
         title.fontSize = 60
         title.position = CGPointMake(frame.size.width/2, frame.size.height/2 + frame.size.height/3)
         addChild(title)

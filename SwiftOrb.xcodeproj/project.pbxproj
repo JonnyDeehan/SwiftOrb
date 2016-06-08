@@ -25,11 +25,6 @@
 		A14A57191CE9F47300EFB666 /* Resolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14A57181CE9F47300EFB666 /* Resolution.swift */; };
 		A14A571B1CEB70EF00EFB666 /* IOS_Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14A571A1CEB70EF00EFB666 /* IOS_Responder.swift */; };
 		A14A57631CEDECFA00EFB666 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14A57621CEDECFA00EFB666 /* Target.swift */; };
-		A1DBA8CC1D08709400E72E51 /* redball_30.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DBA8CB1D08709400E72E51 /* redball_30.png */; };
-		A1DBA8D11D08714A00E72E51 /* redball_22.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DBA8CD1D08714A00E72E51 /* redball_22.png */; };
-		A1DBA8D21D08714A00E72E51 /* redball_24.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DBA8CE1D08714A00E72E51 /* redball_24.png */; };
-		A1DBA8D31D08714A00E72E51 /* redball_26.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DBA8CF1D08714A00E72E51 /* redball_26.png */; };
-		A1DBA8D41D08714A00E72E51 /* redball_28.png in Resources */ = {isa = PBXBuildFile; fileRef = A1DBA8D01D08714A00E72E51 /* redball_28.png */; };
 		A1DBA8D61D08717E00E72E51 /* OrbTrail2.sks in Resources */ = {isa = PBXBuildFile; fileRef = A1DBA8D51D08717E00E72E51 /* OrbTrail2.sks */; };
 		A1E98EAA1D082D8F00EA8A9B /* redball_20.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E98EA91D082D8F00EA8A9B /* redball_20.png */; };
 /* End PBXBuildFile section */
@@ -76,11 +71,6 @@
 		A14A57181CE9F47300EFB666 /* Resolution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolution.swift; sourceTree = "<group>"; };
 		A14A571A1CEB70EF00EFB666 /* IOS_Responder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOS_Responder.swift; sourceTree = "<group>"; };
 		A14A57621CEDECFA00EFB666 /* Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
-		A1DBA8CB1D08709400E72E51 /* redball_30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redball_30.png; path = ../../Downloads/redball_30.png; sourceTree = "<group>"; };
-		A1DBA8CD1D08714A00E72E51 /* redball_22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redball_22.png; path = ../../Downloads/redball_22.png; sourceTree = "<group>"; };
-		A1DBA8CE1D08714A00E72E51 /* redball_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redball_24.png; path = ../../Downloads/redball_24.png; sourceTree = "<group>"; };
-		A1DBA8CF1D08714A00E72E51 /* redball_26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redball_26.png; path = ../../Downloads/redball_26.png; sourceTree = "<group>"; };
-		A1DBA8D01D08714A00E72E51 /* redball_28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redball_28.png; path = ../../Downloads/redball_28.png; sourceTree = "<group>"; };
 		A1DBA8D51D08717E00E72E51 /* OrbTrail2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = OrbTrail2.sks; sourceTree = "<group>"; };
 		A1E98EA91D082D8F00EA8A9B /* redball_20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redball_20.png; path = ../../Downloads/redball_20.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -258,11 +248,6 @@
 			isa = PBXGroup;
 			children = (
 				A1E98EA91D082D8F00EA8A9B /* redball_20.png */,
-				A1DBA8CD1D08714A00E72E51 /* redball_22.png */,
-				A1DBA8CE1D08714A00E72E51 /* redball_24.png */,
-				A1DBA8CF1D08714A00E72E51 /* redball_26.png */,
-				A1DBA8D01D08714A00E72E51 /* redball_28.png */,
-				A1DBA8CB1D08709400E72E51 /* redball_30.png */,
 			);
 			name = Artwork;
 			sourceTree = "<group>";
@@ -375,14 +360,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A12861121D05FBF30045DB7B /* spark.png in Resources */,
-				A1DBA8CC1D08709400E72E51 /* redball_30.png in Resources */,
-				A1DBA8D31D08714A00E72E51 /* redball_26.png in Resources */,
-				A1DBA8D41D08714A00E72E51 /* redball_28.png in Resources */,
-				A1DBA8D11D08714A00E72E51 /* redball_22.png in Resources */,
 				A13696521CDCE63600274F0F /* LaunchScreen.storyboard in Resources */,
 				A1E98EAA1D082D8F00EA8A9B /* redball_20.png in Resources */,
 				A12861111D05FBF30045DB7B /* OrbTrail.sks in Resources */,
-				A1DBA8D21D08714A00E72E51 /* redball_24.png in Resources */,
 				A1DBA8D61D08717E00E72E51 /* OrbTrail2.sks in Resources */,
 				A136964F1CDCE63600274F0F /* Assets.xcassets in Resources */,
 				A136964D1CDCE63600274F0F /* Main.storyboard in Resources */,

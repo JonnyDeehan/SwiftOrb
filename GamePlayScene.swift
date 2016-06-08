@@ -80,7 +80,6 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(ground)
         // Borders
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
-        self.physicsBody?.friction = 0
         // Background
         self.backgroundColor = UIColor.darkGrayColor()
         
@@ -137,7 +136,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         movingObjects.addChild(orb)
         
         // Particle Trail
-        trail = SKEmitterNode(fileNamed: "OrbTrail2")!
+        trail = SKEmitterNode(fileNamed: "OrbTrail")!
         trail.particlePosition = orb.position
         movingObjects.addChild(trail)
     }
@@ -275,9 +274,10 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     
     func startGame(){
         self.addChild(staticOrb)
-        var orbTexArray = ["redball_20","redball_22","redball_24","redball_26","redball_28","redball_30"]
-        var pulseOrb = SKAction.sequence(<#T##actions: [SKAction]##[SKAction]#>)
-        staticOrb.runAction()
+        let fadeIn = SKAction.fadeInWithDuration(1.0)
+        let fadeOut = SKAction.fadeOutWithDuration(1.0)
+        let pulseOrbForever = SKAction.repeatActionForever(SKAction.sequence([fadeIn, fadeOut]))
+        staticOrb.runAction(pulseOrbForever)
         gameOver = false
         score = 0
         scoreLabel.text = "\(score)"
@@ -308,10 +308,14 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         // PlayButton
         startGameBtn = SKLabelNode(fontNamed: "Avenir-BlackOblique")
         startGameBtn.text = "Tap to play"
-        startGameBtn.fontColor = SKColor.purpleColor()
+        startGameBtn.fontColor = UIColor.cyanColor()
         startGameBtn.fontSize = 42
         startGameBtn.position = CGPointMake(frame.size.width/2, frame.size.height*1/3)
         startGameBtn.name = "playButton"
+        let fadeIn = SKAction.fadeInWithDuration(1.0)
+        let fadeOut = SKAction.fadeOutWithDuration(1.0)
+        let pulseForever = SKAction.repeatActionForever(SKAction.sequence([fadeIn, fadeOut]))
+        startGameBtn.runAction(pulseForever)
         self.addChild(startGameBtn)
     }
     
