@@ -26,26 +26,39 @@ struct Settings {
 class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     
     // ====== Nodes ======
+    // Orb
     var orb = SKShapeNode()
     var staticOrb = SKSpriteNode()
+    var trail = SKEmitterNode()
+    // Surrounding Body
     var ground = SKNode()
+    // Parent Nodes
     var movingObjects = SKNode()
     var staticObjects = SKNode()
+    var targetObjects = SKNode()
+    var barrierObjects = SKNode()
+    // Target
     var target = SKShapeNode()
-    var barrier = SKSpriteNode()
+    var explosionEmitterNode = SKEmitterNode()
+    // Barrier
+    var barrier1 = SKShapeNode()
+    var barrier2 = SKShapeNode()
+    var barrier3 = SKShapeNode()
+    // Label Nodes
     var scoreLabel = SKLabelNode()
     var timerLabel = SKLabelNode()
     var gameOverLabel = SKLabelNode()
     var startGameBtn = SKLabelNode()
-    let trailNode = SKNode()
-    var trail = SKEmitterNode()
     // ====== CategoryBitMask ======
-    var surfaceGroup:UInt32 = 2
-    var orbGroup:UInt32 = 1
-    var targetGroup:UInt32 = 3
+    let surfaceGroup  : UInt32 = 0x1 << 0
+    let orbGroup : UInt32 = 0x1 << 1
+    let targetGroup : UInt32 = 0x1 << 2
+    let barriersGroup : UInt32 = 0x1 << 3
     // ====== States ======
     // Game over state
     var gameOver = false
+    // Time
+    var timer = NSTimer()
     var time = 20
     var timeRepeat:Bool = true
     // Pause State
@@ -53,12 +66,16 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     var pauseLoop = false
     // ====== Score ======
     var score = 0
-  
+    // Orb Position
     var projectileIsDragged = false
     var touchCurrentPoint: CGPoint!
     var touchStartingPoint :CGPoint!
     
-    var timer = NSTimer()
+    // Actions
+//    var moveLeft = SKAction()
+//    var moveRight = SKAction()
+//    var moveBarriersForever_1 = SKAction()
+//    var moveBarriersForever_2 = SKAction()
     
     override func didMoveToView(view: SKView) {
         
@@ -69,8 +86,11 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.gravity = Settings.Game.gravity
         self.physicsWorld.speed = 1.5
         
+        // Parent Nodes
         self.addChild(movingObjects)
         self.addChild(staticObjects)
+        self.addChild(targetObjects)
+        self.addChild(barrierObjects)
         
         // Ground
         ground.position = CGPointMake(0,0.1)
@@ -105,12 +125,58 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         orb.zPosition = 15
         orb.fillColor = UIColor.redColor()
         orb.physicsBody = SKPhysicsBody(circleOfRadius: Settings.Metrics.projectileRadius)
-        orb.physicsBody!.affectedByGravity = false
+        orb.physicsBody!.affectedByGravity = true
         orb.physicsBody?.allowsRotation = false
         orb.physicsBody?.categoryBitMask = orbGroup
-        orb.physicsBody?.collisionBitMask = 3
+        orb.physicsBody?.collisionBitMask = targetGroup | barriersGroup
         orb.physicsBody?.contactTestBitMask = surfaceGroup
         orb.strokeColor = UIColor.blueColor()
+        
+        // Barrier Actions
+        var moveLeft = SKAction.moveBy(CGVector(dx: 70,dy: 0), duration: 1)
+        var moveRight = SKAction.moveBy(CGVector(dx: -70,dy: 0), duration: 1)
+        var moveBarriersForever_1 = SKAction.repeatActionForever(SKAction.sequence([moveLeft, moveLeft.reversedAction()]))
+        var moveBarriersForever_2 = SKAction.repeatActionForever(SKAction.sequence([moveRight, moveRight.reversedAction()]))
+        
+        // Barriers
+        barrier1 = SKShapeNode(circleOfRadius: Settings.Metrics.projectileRadius*2)
+        barrier1.physicsBody = SKPhysicsBody(circleOfRadius: Settings.Metrics.projectileRadius*2)
+        barrier1.physicsBody!.affectedByGravity = false
+        barrier1.physicsBody?.allowsRotation = false
+        barrier1.physicsBody?.categoryBitMask = barriersGroup
+        barrier1.physicsBody?.collisionBitMask = barriersGroup
+        barrier1.physicsBody?.contactTestBitMask = orbGroup
+        barrier1.strokeColor = SKColor.blackColor()
+        barrier1.fillColor = UIColor.cyanColor()
+        barrier1.zPosition = 21
+        barrier1.glowWidth = 1.0
+        barrier1.runAction(moveBarriersForever_1)
+        
+        barrier2 = SKShapeNode(circleOfRadius: Settings.Metrics.projectileRadius*2)
+        barrier2.physicsBody = SKPhysicsBody(circleOfRadius: Settings.Metrics.projectileRadius*2)
+        barrier2.physicsBody!.affectedByGravity = false
+        barrier2.physicsBody?.allowsRotation = false
+        barrier2.physicsBody?.categoryBitMask = barriersGroup
+        barrier2.physicsBody?.collisionBitMask = barriersGroup
+        barrier2.physicsBody?.contactTestBitMask = orbGroup
+        barrier2.strokeColor = SKColor.blackColor()
+        barrier2.fillColor = UIColor.cyanColor()
+        barrier2.zPosition = 21
+        barrier2.glowWidth = 1.0
+        barrier2.runAction(moveBarriersForever_2)
+        
+        barrier3 = SKShapeNode(circleOfRadius: Settings.Metrics.projectileRadius*2)
+        barrier3.physicsBody = SKPhysicsBody(circleOfRadius: Settings.Metrics.projectileRadius*2)
+        barrier3.physicsBody!.affectedByGravity = false
+        barrier3.physicsBody?.allowsRotation = false
+        barrier3.physicsBody?.categoryBitMask = barriersGroup
+        barrier3.physicsBody?.collisionBitMask = barriersGroup
+        barrier3.physicsBody?.contactTestBitMask = orbGroup
+        barrier3.strokeColor = SKColor.blackColor()
+        barrier3.fillColor = UIColor.cyanColor()
+        barrier3.zPosition = 21
+        barrier3.glowWidth = 1.0
+        barrier3.runAction(moveBarriersForever_1)
         
         // Static Orb
         let staticOrbTexture = SKTexture(imageNamed: "redball_20.png")
@@ -143,7 +209,7 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
     
     func didBeginContact(contact: SKPhysicsContact) {
         if(!gameOver){
-        
+            
             if (contact.bodyA.categoryBitMask == surfaceGroup || contact.bodyB.categoryBitMask == surfaceGroup){
                 movingObjects.removeAllChildren()
                 let myFunction = SKAction.runBlock({()in self.setupThrowArea()})
@@ -151,7 +217,11 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
             }
             
             if (contact.bodyA.categoryBitMask == targetGroup || contact.bodyB.categoryBitMask == targetGroup){
-                target.removeFromParent()
+                explosionEmitterNode.removeFromParent()
+                explosionEmitterNode = SKEmitterNode(fileNamed:"Explosion")!
+                explosionEmitterNode.position = orb.position
+                self.addChild(explosionEmitterNode)
+                targetObjects.removeAllChildren() // target.removeFromParent() previously
                 movingObjects.removeAllChildren()
                 let myFunction = SKAction.runBlock({()in self.setupThrowArea()})
                 self.runAction(myFunction)
@@ -264,16 +334,30 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
             target.physicsBody?.contactTestBitMask = orbGroup
             target.zPosition = 20
             target.position = CGPoint(x: xPos, y: yPos )
-            self.addChild(target)
+            let fadeIn = SKAction.colorizeWithColor(UIColor.blueColor(), colorBlendFactor: 0.5, duration: 2)
+            let fadeOut = SKAction.colorizeWithColor(UIColor.clearColor(), colorBlendFactor: 0.5, duration: 2)
+            let pulseTargetForever = SKAction.repeatActionForever(SKAction.sequence([fadeIn, fadeOut]))
+            target.runAction(pulseTargetForever)
+
+            targetObjects.addChild(target)
         }
     }
     
     func generateBarriers(){
+        barrier1.position = CGPointMake(frame.midX, 250)
+
+        barrier2.position = CGPointMake(100, 400)
+
+        barrier3.position = CGPointMake(frame.width - 100, 550)
         
+        barrierObjects.addChild(barrier1)
+        barrierObjects.addChild(barrier2)
+        barrierObjects.addChild(barrier3)
     }
     
     func startGame(){
         self.addChild(staticOrb)
+        self.addChild(explosionEmitterNode)
         let fadeIn = SKAction.fadeInWithDuration(1.0)
         let fadeOut = SKAction.fadeOutWithDuration(1.0)
         let pulseOrbForever = SKAction.repeatActionForever(SKAction.sequence([fadeIn, fadeOut]))
@@ -288,13 +372,15 @@ class GamePlayScene: SKScene, SKPhysicsContactDelegate {
         
         setupThrowArea()
         generateTargets()
-        
+        generateBarriers()
     }
     
     func stopGame(){
         movingObjects.removeAllChildren()
         staticOrb.removeFromParent()
         target.removeFromParent()
+        explosionEmitterNode.removeFromParent()
+        barrierObjects.removeAllChildren()
         
         // GameOver
         gameOverLabel.fontName = "Avenir-BlackOblique"

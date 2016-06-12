@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A12861111D05FBF30045DB7B /* OrbTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = A128610F1D05FBF30045DB7B /* OrbTrail.sks */; };
 		A12861121D05FBF30045DB7B /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = A12861101D05FBF30045DB7B /* spark.png */; };
-		A1323EAA1CF7312C00D73A57 /* Orb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1323EA91CF7312C00D73A57 /* Orb.swift */; };
 		A13696441CDCE63600274F0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13696431CDCE63600274F0F /* AppDelegate.swift */; };
 		A13696481CDCE63600274F0F /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13696471CDCE63600274F0F /* GameScene.swift */; };
 		A136964A1CDCE63600274F0F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13696491CDCE63600274F0F /* GameViewController.swift */; };
@@ -24,8 +23,7 @@
 		A14A57171CE9F40C00EFB666 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14A57161CE9F40C00EFB666 /* Extensions.swift */; };
 		A14A57191CE9F47300EFB666 /* Resolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14A57181CE9F47300EFB666 /* Resolution.swift */; };
 		A14A571B1CEB70EF00EFB666 /* IOS_Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14A571A1CEB70EF00EFB666 /* IOS_Responder.swift */; };
-		A14A57631CEDECFA00EFB666 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14A57621CEDECFA00EFB666 /* Target.swift */; };
-		A1DBA8D61D08717E00E72E51 /* OrbTrail2.sks in Resources */ = {isa = PBXBuildFile; fileRef = A1DBA8D51D08717E00E72E51 /* OrbTrail2.sks */; };
+		A1DBA8D61D08717E00E72E51 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = A1DBA8D51D08717E00E72E51 /* Explosion.sks */; };
 		A1E98EAA1D082D8F00EA8A9B /* redball_20.png in Resources */ = {isa = PBXBuildFile; fileRef = A1E98EA91D082D8F00EA8A9B /* redball_20.png */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +47,6 @@
 /* Begin PBXFileReference section */
 		A128610F1D05FBF30045DB7B /* OrbTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = OrbTrail.sks; sourceTree = "<group>"; };
 		A12861101D05FBF30045DB7B /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
-		A1323EA91CF7312C00D73A57 /* Orb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orb.swift; sourceTree = "<group>"; };
 		A13696401CDCE63600274F0F /* SwiftOrb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftOrb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A13696431CDCE63600274F0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A13696471CDCE63600274F0F /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameScene.swift; path = SwiftOrb/GameScene.swift; sourceTree = "<group>"; };
@@ -70,8 +67,7 @@
 		A14A57161CE9F40C00EFB666 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A14A57181CE9F47300EFB666 /* Resolution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolution.swift; sourceTree = "<group>"; };
 		A14A571A1CEB70EF00EFB666 /* IOS_Responder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOS_Responder.swift; sourceTree = "<group>"; };
-		A14A57621CEDECFA00EFB666 /* Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
-		A1DBA8D51D08717E00E72E51 /* OrbTrail2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = OrbTrail2.sks; sourceTree = "<group>"; };
+		A1DBA8D51D08717E00E72E51 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		A1E98EA91D082D8F00EA8A9B /* redball_20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redball_20.png; path = ../../Downloads/redball_20.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,7 +101,7 @@
 			children = (
 				A128610F1D05FBF30045DB7B /* OrbTrail.sks */,
 				A12861101D05FBF30045DB7B /* spark.png */,
-				A1DBA8D51D08717E00E72E51 /* OrbTrail2.sks */,
+				A1DBA8D51D08717E00E72E51 /* Explosion.sks */,
 			);
 			name = Particles;
 			sourceTree = "<group>";
@@ -166,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				A13696831CDCEA7400274F0F /* Scenes */,
-				A13696821CDCEA5800274F0F /* Components */,
 				A13696761CDCE8C300274F0F /* Resources */,
 				A136967B1CDCE90400274F0F /* Libraries */,
 			);
@@ -178,24 +173,8 @@
 			children = (
 				A1E98EAB1D086AC700EA8A9B /* Artwork */,
 				A12861081D05C34F0045DB7B /* Particles */,
-				A136967A1CDCE8FC00274F0F /* Sounds */,
-				A13696781CDCE8E300274F0F /* Music */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		A13696781CDCE8E300274F0F /* Music */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Music;
-			sourceTree = "<group>";
-		};
-		A136967A1CDCE8FC00274F0F /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Sounds;
 			sourceTree = "<group>";
 		};
 		A136967B1CDCE90400274F0F /* Libraries */ = {
@@ -223,15 +202,6 @@
 				A14A571A1CEB70EF00EFB666 /* IOS_Responder.swift */,
 			);
 			name = SceneResponders;
-			sourceTree = "<group>";
-		};
-		A13696821CDCEA5800274F0F /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				A14A57621CEDECFA00EFB666 /* Target.swift */,
-				A1323EA91CF7312C00D73A57 /* Orb.swift */,
-			);
-			name = Components;
 			sourceTree = "<group>";
 		};
 		A13696831CDCEA7400274F0F /* Scenes */ = {
@@ -363,7 +333,7 @@
 				A13696521CDCE63600274F0F /* LaunchScreen.storyboard in Resources */,
 				A1E98EAA1D082D8F00EA8A9B /* redball_20.png in Resources */,
 				A12861111D05FBF30045DB7B /* OrbTrail.sks in Resources */,
-				A1DBA8D61D08717E00E72E51 /* OrbTrail2.sks in Resources */,
+				A1DBA8D61D08717E00E72E51 /* Explosion.sks in Resources */,
 				A136964F1CDCE63600274F0F /* Assets.xcassets in Resources */,
 				A136964D1CDCE63600274F0F /* Main.storyboard in Resources */,
 			);
@@ -393,14 +363,12 @@
 				A14A571B1CEB70EF00EFB666 /* IOS_Responder.swift in Sources */,
 				A14A57191CE9F47300EFB666 /* Resolution.swift in Sources */,
 				A13696481CDCE63600274F0F /* GameScene.swift in Sources */,
-				A1323EAA1CF7312C00D73A57 /* Orb.swift in Sources */,
 				A136964A1CDCE63600274F0F /* GameViewController.swift in Sources */,
 				A14A57131CE0E13800EFB666 /* GamePlayScene.swift in Sources */,
 				A14A57171CE9F40C00EFB666 /* Extensions.swift in Sources */,
 				A13696881CDCF61B00274F0F /* Scene.swift in Sources */,
 				A13696441CDCE63600274F0F /* AppDelegate.swift in Sources */,
 				A13696861CDCF5A900274F0F /* MainMenu.swift in Sources */,
-				A14A57631CEDECFA00EFB666 /* Target.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
